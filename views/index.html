@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Back-End Study Guide</title>
+  </head>
+  <body>
+    <h1>Back-End Review Questions</h1>
+    <a href="/new-question">Add Question</a>
+    <ul id="questions">
+      {% for question in questions %}
+      <li>
+        <h4>{{ question.text }}</h4>
+        <button id="button-{{ question.id }}">Click to show answer</button>
+        <p id="answer-{{ question.id }}" style="visibility: hidden;">Answer: {{ question.answer }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    <script>
+      const questionsList = document.getElementById('questions');
+      questionsList.addEventListener('click', function (e) {
+        const button = e.target;
+        const id = button.id.slice(7);
+        const answer = document.getElementById(`answer-${id}`);
+
+        answer.style.visibility = 'visible';
+      });
+    </script>
+  </body>
+</html>
